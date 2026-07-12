@@ -1,0 +1,29 @@
+# Maven
+target/
+*.class
+*.jar
+*.war
+
+# Application properties with secrets
+**/application.properties
+**/application-*.properties
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maven wrapper
+!mvnw
+!.mvn/
+
+# Logs
+*.log
+logs/
+
+.idea/
