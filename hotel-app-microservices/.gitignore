@@ -1,12 +1,14 @@
-# Maven
+# Maven build output
 target/
 *.class
 *.jar
 *.war
 
-# Application properties with secrets
+# Application config with secrets (use *.example files instead)
 **/application.properties
 **/application-*.properties
+**/application.yml
+**/application-*.yml
 
 # IntelliJ
 .idea/
@@ -26,4 +28,5 @@ Thumbs.db
 *.log
 logs/
 
-.idea/
+# Spring Initializr generated help file
+HELP.md

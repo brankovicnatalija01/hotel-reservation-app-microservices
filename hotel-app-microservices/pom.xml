@@ -23,6 +23,7 @@
         <module>roomservice</module>
         <module>reservationservice</module>
         <module>reviewservice</module>
+        <module>apigateway</module>
     </modules>
 
     <properties>
