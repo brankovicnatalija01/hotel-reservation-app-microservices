@@ -19,6 +19,6 @@ public class InternalUserController {
     public UserSummaryDTO getUserById(@PathVariable Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found: " + id));
-        return new UserSummaryDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail());
+        return new UserSummaryDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(),  user.getPhone() );
     }
 }

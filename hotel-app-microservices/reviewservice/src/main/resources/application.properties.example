@@ -1,0 +1,25 @@
+spring.application.name=reviewservice
+server.port=8084
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/hotel_db?currentSchema=hotel_reviews
+spring.datasource.username=YOUR_DB_USERNAME
+spring.datasource.password=YOUR_DB_PASSWORD
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.xml
+
+hotel.app.jwtSecret=YOUR_JWT_SECRET_MIN_32_CHARS
+hotel.app.jwtExpirationMs=86400000
+
+spring.mvc.throw-exception-if-no-handler-found=true
+spring.jackson.deserialization.fail-on-unknown-properties=true
+
+# Active communication profile: rest | grpc | kafka
+spring.profiles.active=rest
+
+# URL of reservation-service (used by the REST profile)
+services.reservation-service.url=http://localhost:8083

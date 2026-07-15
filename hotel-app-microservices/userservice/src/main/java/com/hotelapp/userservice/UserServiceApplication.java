@@ -1,13 +1,13 @@
-package com.hotelapp.roomservice;
+package com.hotelapp.userservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RoomserviceApplication {
+public class UserServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RoomserviceApplication.class, args);
+		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
 }

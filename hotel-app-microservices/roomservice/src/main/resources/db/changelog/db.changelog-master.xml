@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="1-create-schema" author="hotelapp">
+        <sql>CREATE SCHEMA IF NOT EXISTS hotel_rooms</sql>
+    </changeSet>
+
+    <changeSet id="2-create-properties" author="hotelapp">
+        <createTable tableName="properties" schemaName="hotel_rooms">
+            <column name="id" type="BIGSERIAL"><constraints primaryKey="true" nullable="false"/></column>
+            <column name="name" type="VARCHAR(255)"><constraints nullable="false"/></column>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(100)"/>
+            <column name="country" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3-create-room-types" author="hotelapp">
+        <createTable tableName="room_types" schemaName="hotel_rooms">
+            <column name="id" type="BIGSERIAL"><constraints primaryKey="true" nullable="false"/></column>
+            <column name="name" type="VARCHAR(100)"><constraints nullable="false" unique="true"/></column>
+            <column name="capacity" type="INT"><constraints nullable="false"/></column>
+            <column name="description" type="VARCHAR(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4-create-amenities" author="hotelapp">
+        <createTable tableName="amenities" schemaName="hotel_rooms">
+            <column name="id" type="BIGSERIAL"><constraints primaryKey="true" nullable="false"/></column>
+            <column name="name" type="VARCHAR(100)"><constraints nullable="false" unique="true"/></column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5-create-rooms" author="hotelapp">
+        <createTable tableName="rooms" schemaName="hotel_rooms">
+            <column name="id" type="BIGSERIAL"><constraints primaryKey="true" nullable="false"/></column>
+            <column name="room_number" type="VARCHAR(10)"><constraints nullable="false"/></column>
+            <column name="price_per_night" type="DECIMAL(10,2)"><constraints nullable="false"/></column>
+            <column name="description" type="VARCHAR(1000)"/>
+            <column name="property_id" type="BIGINT">
+                <constraints foreignKeyName="fk_rooms_property" references="hotel_rooms.properties(id)"/>
+            </column>
+            <column name="room_type_id" type="BIGINT">
+                <constraints foreignKeyName="fk_rooms_room_type" references="hotel_rooms.room_types(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6-create-room-amenities" author="hotelapp">
+        <createTable tableName="room_amenities" schemaName="hotel_rooms">
+            <column name="room_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_ra_room" references="hotel_rooms.rooms(id)"/>
+            </column>
+            <column name="amenity_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_ra_amenity" references="hotel_rooms.amenities(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="7-create-room-images" author="hotelapp">
+        <createTable tableName="room_images" schemaName="hotel_rooms">
+            <column name="id" type="BIGSERIAL"><constraints primaryKey="true" nullable="false"/></column>
+            <column name="room_id" type="BIGINT">
+                <constraints foreignKeyName="fk_images_room" references="hotel_rooms.rooms(id)"/>
+            </column>
+            <column name="url" type="VARCHAR(500)"><constraints nullable="false"/></column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="8-create-room-bookings" author="hotelapp">
+        <createTable tableName="room_bookings" schemaName="hotel_rooms">
+            <column name="id" type="BIGSERIAL"><constraints primaryKey="true" nullable="false"/></column>
+            <column name="reservation_id" type="BIGINT"/>
+            <column name="room_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_bookings_room" references="hotel_rooms.rooms(id)"/>
+            </column>
+            <column name="check_in_date" type="DATE"><constraints nullable="false"/></column>
+            <column name="check_out_date" type="DATE"><constraints nullable="false"/></column>
+            <column name="status" type="VARCHAR(20)"><constraints nullable="false"/></column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

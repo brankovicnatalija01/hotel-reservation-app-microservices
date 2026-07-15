@@ -1,13 +1,13 @@
-package com.hotelapp.userservice;
+package com.hotelapp.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserserviceApplication {
+public class ApigatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserserviceApplication.class, args);
+		SpringApplication.run(ApigatewayApplication.class, args);
 	}
 
 }

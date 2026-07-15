@@ -1,0 +1,26 @@
+spring.application.name=reservationservice
+server.port=8083
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/hotel_db?currentSchema=hotel_reservations
+spring.datasource.username=YOUR_DB_USERNAME
+spring.datasource.password=YOUR_DB_PASSWORD
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.xml
+
+hotel.app.jwtSecret=YOUR_JWT_SECRET_MIN_32_CHARS
+hotel.app.jwtExpirationMs=86400000
+
+spring.mvc.throw-exception-if-no-handler-found=true
+spring.jackson.deserialization.fail-on-unknown-properties=true
+
+# Active communication profile: rest | grpc | kafka
+spring.profiles.active=rest
+
+# URLs of other services (used by the REST profile)
+services.user-service.url=http://localhost:8081
+services.room-service.url=http://localhost:8082

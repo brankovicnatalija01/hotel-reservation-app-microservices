@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="1-create-schema" author="hotelapp">
+        <sql>CREATE SCHEMA IF NOT EXISTS hotel_reviews</sql>
+    </changeSet>
+
+    <changeSet id="2-create-reviews" author="hotelapp">
+        <createTable tableName="reviews" schemaName="hotel_reviews">
+            <column name="id" type="BIGSERIAL"><constraints primaryKey="true" nullable="false"/></column>
+            <column name="rating" type="INT"><constraints nullable="false"/></column>
+            <column name="comment" type="VARCHAR(1000)"/>
+            <column name="reservation_id" type="BIGINT"><constraints nullable="false" unique="true"/></column>
+            <!-- Snapshot fields from reservation-service -->
+            <column name="user_id" type="BIGINT"/>
+            <column name="user_first_name" type="VARCHAR(100)"/>
+            <column name="user_last_name" type="VARCHAR(100)"/>
+            <column name="room_id" type="BIGINT"/>
+            <column name="room_number" type="VARCHAR(10)"/>
+            <column name="room_type_name" type="VARCHAR(100)"/>
+            <column name="room_type_description" type="VARCHAR(1000)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

@@ -16,4 +16,5 @@ public class RoomSummaryDTO {
     private String propertyName;
     private String roomTypeName;
     private int capacity;
+    private String roomTypeDescription;
 }
